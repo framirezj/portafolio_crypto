@@ -1,22 +1,39 @@
 import express from 'express'
+import { getTotalValue } from '../services/getTotal.service.js'
 
 const router = express.Router()
 
 router.get('/', (req, res) => {
-    res.status(200).json({message: 'Hola desde Crypto'})
+    res.status(200).json({ message: 'Hola desde Crypto' })
 })
+
+
+/*
+{
+	"portfolio": {
+		"BTC": 0.5,
+		"ETH": 2.0,
+		"USDT": 1000
+	},
+	"fiat_currency": "CLP"
+}
+*/
 
 router.post('/', async (req, res) => {
     try {
-        
-        res.json({monto_fake: "$muuuuucho dinero"})
-        
+
+        const { portfolio, fiat_currency } = req.body
+
+        res.json(await getTotalValue(portfolio, fiat_currency))
+
     } catch (error) {
-        console.error("Error al obtener el total del portafolio", error)
-        res.status(500).json({error_message: "No se pudo obtener la información"})
+        res.status(500).json({
+            success: false,
+            error: error.message
+        })
     }
-    
-    
+
+
 })
 
 
