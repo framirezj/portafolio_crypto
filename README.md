@@ -9,31 +9,13 @@ Este proyecto es una aplicación Node.js que permite consultar información de c
 - `services/apibuda.service.js`: Servicio para interactuar con la API de Buda.com.
 - `services/getTotal.service.js`: Servicio para calcular totales del portafolio.
 
-## Instalación
-
-1. Clona el repositorio:
-   ```powershell
-   git clone <url-del-repositorio>
-   ```
-2. Instala las dependencias:
-   ```powershell
-   cd portafolio_crypto
-   npm install
-   ```
-
-
 ## Uso
 
-1. Inicia la aplicación:
-   ```powershell
-   node app.js
-   ```
-
-2. Realiza una petición POST al endpoint principal para obtener el valor total de tu portafolio:
+1. Realiza una petición POST al endpoint principal para obtener el valor total de tu portafolio:
 
    **Endpoint:**
    ```
-   POST /crypto
+   POST https://portafolio-crypto.onrender.com/crypto
    ```
 
    **Body esperado (JSON):**
@@ -61,6 +43,22 @@ Este proyecto es una aplicación Node.js que permite consultar información de c
 
    - `total`: Valor total del portafolio en la moneda solicitada.
    - `currency`: Moneda utilizada para el cálculo.
+  
+## Instalación
+
+1. Clona el repositorio:
+   ```powershell
+   git clone <url-del-repositorio>
+   ```
+2. Instala las dependencias:
+   ```powershell
+   cd portafolio_crypto
+   npm install
+   ```
+3. Inicia la aplicación:
+   ```powershell
+   node app.js
+   ```
 
 ## Dependencias
 
