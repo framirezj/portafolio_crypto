@@ -4,19 +4,15 @@ export async function getTotalValue(portfolio, fiat_currency) {
   //obtener los datos
   const datosApi = await getData();
 
-  const cryptoKeys = Object.keys(portfolio); // [BTC, ETH, .....]
-  const fiat = fiat_currency; //CLP
-
   let total = 0;
 
-  for (const cryptoKey of cryptoKeys) {
+  for (const [cryptoKey, monto] of Object.entries(portfolio)) {
+    const marketId = `${cryptoKey}-${fiat_currency}`;
 
-    const cryptoData = datosApi.find(
-      (coin) => coin.market_id === `${cryptoKey}-${fiat}`
-    );
-    const price = parseFloat(cryptoData.last_price[0]);
+    const cryptoData = datosApi.find((crypto) => crypto.market_id === marketId);
+    const price = Number(cryptoData.last_price[0]);
 
-    total += price * portfolio[cryptoKey];
+    total += price * monto;
   }
 
   return total;
