@@ -10,7 +10,16 @@ export async function getTotalValue(portfolio, fiat_currency) {
     const marketId = `${cryptoKey}-${fiat_currency}`;
 
     const cryptoData = datosApi.find((crypto) => crypto.market_id === marketId);
+    if (!cryptoData) {
+      console.warn(`No se encontró el ${marketId}`);
+      continue;
+    }
+
     const price = Number(cryptoData.last_price[0]);
+    if (isNaN(price)) {
+      console.warn(`Precio inválido de ${marketId}: ${cryptoData.last_price}`);
+      continue;
+    }
 
     total += price * monto;
   }
