@@ -33,7 +33,7 @@ Este proyecto es una aplicación Node.js que permite consultar información de c
 
    **Endpoint:**
    ```
-   POST /
+   POST /crypto
    ```
 
    **Body esperado (JSON):**
