@@ -24,7 +24,12 @@ router.post('/', async (req, res) => {
 
         const { portfolio, fiat_currency } = req.body
 
-        res.json(await getTotalValue(portfolio, fiat_currency))
+        const total = await getTotalValue(portfolio, fiat_currency)
+
+        res.status(200).json({
+            total: total,
+            currency: fiat_currency
+        })
 
     } catch (error) {
         res.status(500).json({
